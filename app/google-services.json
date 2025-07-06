@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "730544587012",
+    "project_id": "syncwell-6cd65",
+    "storage_bucket": "syncwell-6cd65.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:730544587012:android:77f0ede73b6a1a7d745051",
+        "android_client_info": {
+          "package_name": "com.example.syncwell"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "730544587012-13n02t0rgmgfegb4ahorrc0tvj6l73di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.syncwell",
+            "certificate_hash": "db05a0009a98dddd41a3bd1dae86db8c5d8315f3"
+          }
+        },
+        {
+          "client_id": "730544587012-bcuhpka2v0q7p1evojj91n7mnv561ekt.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApG2OtKL9Fcghsl3FkkmRMIIXIyUi9Ggc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "730544587012-bcuhpka2v0q7p1evojj91n7mnv561ekt.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

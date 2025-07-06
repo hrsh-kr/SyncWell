@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">SyncWell</string>
+    
+    <!-- Notification Channels -->
+    <string name="notification_channel_medicine_name">Medicine Reminders</string>
+    <string name="notification_channel_medicine_description">Reminders to take your medications on time</string>
+    <string name="notification_channel_wellness_name">Wellness Reminders</string>
+    <string name="notification_channel_wellness_description">Reminders to track your wellness metrics and habits</string>
+    
+    <!-- Notifications -->
+    <string name="medicine_notification_title">Medicine Reminder</string>
+    <string name="medicine_notification_content">Time to take %1$s</string>
+    <string name="wellness_notification_title">Wellness Check-in</string>
+    <string name="wellness_notification_content">Time to update your wellness data for today</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">My Profile</string>
+    <string name="profile_edit_name">Edit Display Name</string>
+    <string name="profile_name_error">Name cannot be empty</string>
+    <string name="profile_app_info">App Information</string>
+    <string name="profile_about_syncwell">About SyncWell</string>
+    <string name="profile_sign_out">Sign Out</string>
+    <string name="profile_sign_out_subtitle">Log out of your account</string>
+    <string name="profile_confirm_sign_out">Are you sure you want to sign out?</string>
+    <string name="profile_accessibility">Accessibility</string>
+    <string name="profile_language">Language</string>
+    <string name="profile_version">SyncWell version 1.0.0</string>
+    
+    <!-- Button Text -->
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">About SyncWell</string>
+    <string name="about_description">SyncWell is a comprehensive health and wellness tracking application designed to help you maintain a healthier lifestyle. Track your medications, daily wellness metrics, and personal health tasks all in one place.</string>
+    <string name="about_features">Features:</string>
+    <string name="about_feature_1">• Medicine tracking with reminders</string>
+    <string name="about_feature_2">• Sleep quality monitoring</string>
+    <string name="about_feature_3">• Water intake tracking</string>
+    <string name="about_feature_4">• Task management for health-related activities</string>
+    <string name="about_feature_5">• Daily wellness metrics tracking</string>
+    <string name="about_privacy">Your privacy matters to us. All your health data is stored securely on your device.</string>
+    <string name="about_developer">Developed with ❤️ by the SyncWell Team</string>
+    
+    <!-- Dashboard Screen -->
+    <string name="dashboard_greeting">Hi, %1$s</string>
+    <string name="dashboard_today">Today %1$s</string>
+    <string name="dashboard_sleep_title">Sleep</string>
+    <string name="dashboard_sleep_hours">%1$sh</string>
+    <string name="dashboard_sleep_goal">%1$sh goal</string>
+    <string name="dashboard_water_title">Water</string>
+    <string name="dashboard_water_amount">%1$soz</string>
+    <string name="dashboard_water_goal">%1$soz goal</string>
+    <string name="dashboard_percentage">%1$s%%</string>
+    <string name="dashboard_activities">Today\'s Activities</string>
+    <string name="dashboard_tasks">Tasks</string>
+    <string name="dashboard_medications">Medications</string>
+    <string name="dashboard_wellness">Wellness</string>
+    <string name="dashboard_coming_up">Coming Up</string>
+    
+    <!-- Accessibility -->
+    <string name="accessibility_edit_name">Edit your display name</string>
+    <string name="accessibility_profile_picture">Profile picture</string>
+    <string name="accessibility_back">Navigate back</string>
+    <string name="accessibility_sign_out">Sign out of your account</string>
+    <string name="accessibility_about">View app information</string>
+    <string name="accessibility_water_progress">Water intake progress</string>
+    <string name="accessibility_sleep_progress">Sleep progress</string>
+</resources>

@@ -1,0 +1,69 @@
+<resources>
+    <string name="app_name">SyncWell</string>
+    
+    <!-- Notification Channels -->
+    <string name="notification_channel_medicine_name">Recordatorios de Medicamentos</string>
+    <string name="notification_channel_medicine_description">Recordatorios para tomar sus medicamentos a tiempo</string>
+    <string name="notification_channel_wellness_name">Recordatorios de Bienestar</string>
+    <string name="notification_channel_wellness_description">Recordatorios para seguir sus métricas de bienestar y hábitos</string>
+    
+    <!-- Notifications -->
+    <string name="medicine_notification_title">Recordatorio de Medicamento</string>
+    <string name="medicine_notification_content">Es hora de tomar %1$s</string>
+    <string name="wellness_notification_title">Registro de Bienestar</string>
+    <string name="wellness_notification_content">Es hora de actualizar sus datos de bienestar para hoy</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">Mi Perfil</string>
+    <string name="profile_edit_name">Editar Nombre</string>
+    <string name="profile_name_error">El nombre no puede estar vacío</string>
+    <string name="profile_app_info">Información de la Aplicación</string>
+    <string name="profile_about_syncwell">Acerca de SyncWell</string>
+    <string name="profile_sign_out">Cerrar Sesión</string>
+    <string name="profile_sign_out_subtitle">Salir de su cuenta</string>
+    <string name="profile_confirm_sign_out">¿Está seguro de que desea cerrar sesión?</string>
+    <string name="profile_accessibility">Accesibilidad</string>
+    <string name="profile_language">Idioma</string>
+    <string name="profile_version">SyncWell versión 1.0.0</string>
+    
+    <!-- Button Text -->
+    <string name="save">Guardar</string>
+    <string name="cancel">Cancelar</string>
+    
+    <!-- About Screen -->
+    <string name="about_title">Acerca de SyncWell</string>
+    <string name="about_description">SyncWell es una aplicación completa de seguimiento de salud y bienestar diseñada para ayudarle a mantener un estilo de vida más saludable. Realice un seguimiento de sus medicamentos, métricas de bienestar diarias y tareas de salud personal, todo en un solo lugar.</string>
+    <string name="about_features">Características:</string>
+    <string name="about_feature_1">• Seguimiento de medicamentos con recordatorios</string>
+    <string name="about_feature_2">• Monitoreo de calidad del sueño</string>
+    <string name="about_feature_3">• Seguimiento de consumo de agua</string>
+    <string name="about_feature_4">• Gestión de tareas para actividades relacionadas con la salud</string>
+    <string name="about_feature_5">• Seguimiento de métricas de bienestar diarias</string>
+    <string name="about_privacy">Su privacidad es importante para nosotros. Todos sus datos de salud se almacenan de forma segura en su dispositivo.</string>
+    <string name="about_developer">Desarrollado con ❤️ por el Equipo SyncWell</string>
+    
+    <!-- Dashboard Screen -->
+    <string name="dashboard_greeting">Hola, %1$s</string>
+    <string name="dashboard_today">Hoy %1$s</string>
+    <string name="dashboard_sleep_title">Sueño</string>
+    <string name="dashboard_sleep_hours">%1$sh</string>
+    <string name="dashboard_sleep_goal">Meta %1$sh</string>
+    <string name="dashboard_water_title">Agua</string>
+    <string name="dashboard_water_amount">%1$soz</string>
+    <string name="dashboard_water_goal">Meta %1$soz</string>
+    <string name="dashboard_percentage">%1$s%%</string>
+    <string name="dashboard_activities">Actividades de Hoy</string>
+    <string name="dashboard_tasks">Tareas</string>
+    <string name="dashboard_medications">Medicamentos</string>
+    <string name="dashboard_wellness">Bienestar</string>
+    <string name="dashboard_coming_up">Próximamente</string>
+    
+    <!-- Accessibility -->
+    <string name="accessibility_edit_name">Editar su nombre</string>
+    <string name="accessibility_profile_picture">Foto de perfil</string>
+    <string name="accessibility_back">Volver atrás</string>
+    <string name="accessibility_sign_out">Cerrar sesión de su cuenta</string>
+    <string name="accessibility_about">Ver información de la aplicación</string>
+    <string name="accessibility_water_progress">Progreso de consumo de agua</string>
+    <string name="accessibility_sleep_progress">Progreso de sueño</string>
+</resources> 

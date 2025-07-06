@@ -1,19 +1,23 @@
-# SyncWell - Health & Wellness Tracking App
+= SyncWell - Health & Wellness Tracking App
+:toc: left
+:icons: font
+:source-highlighter: rouge
 
 SyncWell is a comprehensive health and wellness tracking application designed to help users maintain a healthier lifestyle. The app provides tools to track medications, daily wellness metrics, personal health tasks, and more - all in one centralized platform.
 
-## Core Functionalities
+== Core Functionalities
 
-### 1. Health Task Management
+=== 1. Health Task Management
 
 SyncWell allows users to create, track, and manage health-related tasks with features like:
 
-- Task creation with deadlines
-- Task importance levels
-- Customizable reminders
-- Synchronized storage between local and cloud
+* Task creation with deadlines
+* Task importance levels
+* Customizable reminders
+* Synchronized storage between local and cloud
 
-```kotlin
+[source,kotlin]
+----
 // Task entity with Room for local persistence
 @Entity(tableName = "tasks")
 data class Task(
@@ -28,21 +32,22 @@ data class Task(
     val importance: Int = 0,
     val lastModified: Long = System.currentTimeMillis()
 )
-```
+----
 
-### 2. Medication Tracking
+=== 2. Medication Tracking
 
 The app helps users manage their medications with:
 
-- Medicine schedules and reminders
-- Dosage tracking
-- Notifications for medicine times
+* Medicine schedules and reminders
+* Dosage tracking
+* Notifications for medicine times
 
-### 3. Wellness Metrics Monitoring
+=== 3. Wellness Metrics Monitoring
 
 Users can track various wellness metrics including:
 
-```kotlin
+[source,kotlin]
+----
 // WellnessEntry entity shows the tracked metrics
 @Entity(tableName = "wellness_entries")
 @TypeConverters(DateConverters::class)
@@ -71,13 +76,14 @@ data class WellnessEntry(
     val energyLevel: Int = 0,
     val notes: String = ""
 )
-```
+----
 
-### 4. Dashboard Display
+=== 4. Dashboard Display
 
 The app features a comprehensive dashboard that shows daily progress:
 
-```kotlin
+[source,kotlin]
+----
 // Dashboard UI component showing circular progress indicators
 CircularProgressMetric(
     value = sleepProgress,
@@ -87,13 +93,14 @@ CircularProgressMetric(
     subtitle = stringResource(R.string.dashboard_sleep_goal, todayEntry?.sleepGoalHours ?: 8),
     progressColor = Secondary
 )
-```
+----
 
-## Localization Support
+== Localization Support
 
-SyncWell supports multiple languages including English and Spanish (with functionality for additional languages). The app implements robust localization handling:
+SyncWell supports multiple languages including English and Spanish (with functionality for French and additional languages). The app implements robust localization handling:
 
-```kotlin
+[source,kotlin]
+----
 // Language switching functionality in SyncWellApp.kt
 private fun applySavedLanguage() {
     val prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
@@ -118,17 +125,18 @@ private fun applySavedLanguage() {
 
     resources.updateConfiguration(config, resources.displayMetrics)
 }
-```
+----
 
-The app provides string resources files for different languages to ensure proper translations across the application.
+The app provides string resources files for different languages to ensure proper translations across the application. Language selection can be changed at runtime through the user profile settings.
 
-## Customized Startup Screen & Cloud Integration
+== Customized Startup Screen & Cloud Integration
 
-### Splash Screen
+=== Splash Screen
 
 SyncWell features a customized splash screen with branded animation:
 
-```kotlin
+[source,kotlin]
+----
 // Splash screen implementation in MainActivity.kt
 override fun onCreate(savedInstanceState: Bundle?) {
     // Install splash screen before calling super.onCreate()
@@ -144,13 +152,14 @@ override fun onCreate(savedInstanceState: Bundle?) {
         splashScreen.setKeepOnScreenCondition { false }
     }, 1500) // 1.5 seconds delay
 }
-```
+----
 
-### Firebase Cloud Integration
+=== Firebase Cloud Integration
 
 The app uses Firebase for authentication and cloud storage:
 
-```kotlin
+[source,kotlin]
+----
 // Firebase configuration in FirebaseModule.kt
 @Module
 @InstallIn(SingletonComponent::class)
@@ -179,13 +188,14 @@ object FirebaseModule {
         return firestore
     }
 }
-```
+----
 
-### Room Database for Local Caching
+=== Room Database for Local Caching
 
 SyncWell uses Room database for efficient local data storage:
 
-```kotlin
+[source,kotlin]
+----
 // Database module providing Room database
 @Provides
 @Singleton
@@ -195,11 +205,12 @@ fun provideDatabase(@ApplicationContext context: Context): SyncWellDatabase {
         .fallbackToDestructiveMigration()
         .build()
 }
-```
+----
 
 Data repositories in the app follow a pattern of storing data locally first, then syncing with Firebase:
 
-```kotlin
+[source,kotlin]
+----
 // Example from TaskRepository showing local-first storage pattern
 suspend fun upsertTask(task: Task) {
     val uid = userId ?: return
@@ -215,13 +226,14 @@ suspend fun upsertTask(task: Task) {
         // Handle network errors
     }
 }
-```
+----
 
-## Accessibility Features
+== Accessibility Features
 
 SyncWell is built with accessibility in mind, especially for TalkBack screen reader support:
 
-```kotlin
+[source,kotlin]
+----
 // Example of semantic properties for accessibility
 Surface(
     modifier = Modifier
@@ -239,36 +251,60 @@ Surface(
             .size(60.dp)
     )
 }
-```
+----
 
 The app includes:
 
-- Content descriptions for all interactive elements
-- Properly labeled buttons and controls
-- Support for larger text sizes
-- High contrast color scheme
-- Clear navigation paths
-- TalkBack compatibility throughout the app
+* Content descriptions for all interactive elements
+* Properly labeled buttons and controls
+* Support for larger text sizes
+* High contrast color scheme
+* Clear navigation paths
+* TalkBack compatibility throughout the app
 
-## Technology Stack
+== Technology Stack
 
-- **UI**: Jetpack Compose with Material3 design
-- **Architecture**: MVVM with Repository pattern
-- **Local Storage**: Room Database
-- **Cloud Storage**: Firebase Firestore
-- **Authentication**: Firebase Auth with Google Sign-In
-- **Background Processing**: WorkManager
-- **Dependency Injection**: Hilt
-- **Date/Time**: ThreeTenABP
-- **Network**: Retrofit with Gson
-- **Analytics**: Firebase Analytics
+[cols="1,3", options="header"]
+|===
+|Technology |Description
 
-## Getting Started
+|UI
+|Jetpack Compose with Material3 design
+
+|Architecture
+|MVVM with Repository pattern
+
+|Local Storage
+|Room Database with SQLite
+
+|Cloud Storage
+|Firebase Firestore with offline persistence
+
+|Authentication
+|Firebase Auth with Google Sign-In
+
+|Background Processing
+|WorkManager for scheduled tasks
+
+|Dependency Injection
+|Hilt for dependency management
+
+|Date/Time
+|ThreeTenABP for date operations
+
+|Network
+|Retrofit with Gson for API communication
+
+|Analytics
+|Firebase Analytics for user insights
+|===
+
+== Getting Started
 
 1. Clone the repository
 2. Set up a Firebase project and add the `google-services.json` file
 3. Build and run the application
 
-## Contributing
+== Contributing
 
-Contributions to SyncWell are welcome! Please feel free to submit pull requests, create issues, or suggest new features.
+Contributions to SyncWell are welcome! Please feel free to submit pull requests, create issues, or suggest new features. 
