@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/your-username/SyncWell/main/assets/syncwell_banner.png" width="600" alt="SyncWell Banner" />
+  <img src="app/src/main/res/drawable/app_icon.jpg" width="600" alt="SyncWell Banner" />
 </p>
 
 ---
