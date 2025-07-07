@@ -1,25 +1,43 @@
-# SyncWell - Health & Wellness Tracking App
+<h1 align="center">🧘‍♀️ SyncWell – Health & Wellness Tracking App</h1>
 
-SyncWell is a comprehensive health and wellness tracking application designed to help users maintain a healthier lifestyle. The app provides tools to track medications, daily wellness metrics, personal health tasks, and more - all in one centralized platform.
+<p align="center">
+  <img src="https://img.shields.io/github/stars/your-username/SyncWell?style=social" />
+  <img src="https://img.shields.io/github/forks/your-username/SyncWell?style=social" />
+  <img src="https://img.shields.io/github/license/your-username/SyncWell" />
+  <img src="https://img.shields.io/badge/Kotlin-%E2%9C%85-blue" />
+  <img src="https://img.shields.io/badge/Jetpack%20Compose-Material3-blueviolet" />
+  <img src="https://img.shields.io/badge/Firebase-CloudSync-yellow" />
+  <img src="https://img.shields.io/badge/Room-Local%20DB-green" />
+</p>
 
-## Core Functionalities
+<p align="center">
+  <img src="https://raw.githubusercontent.com/your-username/SyncWell/main/assets/syncwell_banner.png" width="600" alt="SyncWell Banner" />
+</p>
 
-### 1. Health Task Management
+---
 
-SyncWell allows users to create, track, and manage health-related tasks with features like:
+## 📑 Table of Contents
 
-- Task creation with deadlines
-- Task importance levels
-- Customizable reminders
-- Synchronized storage between local and cloud
+- [✨ Features](#-features)
+- [📱 UI Preview](#-ui-preview)
+- [📦 Tech Stack](#-tech-stack)
+- [🚀 Getting Started](#-getting-started)
+- [🤝 Contributing](#-contributing)
+- [🛡️ License](#-license)
+
+---
+
+## ✨ Features
+
+### ✅ Health Task Management
+- 📅 Task creation with deadlines and importance levels  
+- 🔔 Smart reminders with cloud/local sync  
+- 🗃️ Room persistence + Firebase sync
 
 ```kotlin
-// Task entity with Room for local persistence
 @Entity(tableName = "tasks")
 data class Task(
-    @PrimaryKey
-    @DocumentId
-    val id: String = UUID.randomUUID().toString(),
+    @PrimaryKey @DocumentId val id: String = UUID.randomUUID().toString(),
     val userId: String = "",
     val title: String = "",
     val description: String = "",
@@ -28,247 +46,3 @@ data class Task(
     val importance: Int = 0,
     val lastModified: Long = System.currentTimeMillis()
 )
-```
-
-### 2. Medication Tracking
-
-The app helps users manage their medications with:
-
-- Medicine schedules and reminders
-- Dosage tracking
-- Notifications for medicine times
-
-### 3. Wellness Metrics Monitoring
-
-Users can track various wellness metrics including:
-
-```kotlin
-// WellnessEntry entity shows the tracked metrics
-@Entity(tableName = "wellness_entries")
-@TypeConverters(DateConverters::class)
-data class WellnessEntry(
-    @PrimaryKey
-    @DocumentId
-    val id: String = UUID.randomUUID().toString(),
-    val userId: String = "",
-
-    // Water tracking
-    val waterIntakeOz: Int = 0,
-    val waterGoalOz: Int = 64,
-
-    // Sleep tracking
-    val sleepHours: Float = 0f,
-    val sleepGoalHours: Float = 8f,
-    val bedTimeMillis: Long = 0,
-    val wakeupTimeMillis: Long = 0,
-
-    // Step tracking
-    val stepCount: Int = 0,
-    val stepGoal: Int = 10000,
-
-    // Other health metrics
-    val moodRating: Int = 0,
-    val energyLevel: Int = 0,
-    val notes: String = ""
-)
-```
-
-### 4. Dashboard Display
-
-The app features a comprehensive dashboard that shows daily progress:
-
-```kotlin
-// Dashboard UI component showing circular progress indicators
-CircularProgressMetric(
-    value = sleepProgress,
-    maxValue = 1f,
-    title = stringResource(R.string.dashboard_sleep_title),
-    mainText = stringResource(R.string.dashboard_sleep_hours, todayEntry?.sleepHours ?: 0),
-    subtitle = stringResource(R.string.dashboard_sleep_goal, todayEntry?.sleepGoalHours ?: 8),
-    progressColor = Secondary
-)
-```
-
-## Localization Support
-
-SyncWell supports multiple languages including English and Spanish (with functionality for additional languages). The app implements robust localization handling:
-
-```kotlin
-// Language switching functionality in SyncWellApp.kt
-private fun applySavedLanguage() {
-    val prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
-    val savedLanguage = prefs.getString(PREF_LANGUAGE, DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
-
-    // Create locale from language code
-    val locale = Locale(savedLanguage)
-    Locale.setDefault(locale)
-
-    // Set app locale programmatically
-    val localeList = androidx.core.os.LocaleListCompat.forLanguageTags(savedLanguage)
-    AppCompatDelegate.setApplicationLocales(localeList)
-
-    // Apply configuration to resources
-    val config = resources.configuration
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        val localeList = LocaleList(locale)
-        config.setLocales(localeList)
-    } else {
-        config.locale = locale
-    }
-
-    resources.updateConfiguration(config, resources.displayMetrics)
-}
-```
-
-The app provides string resources files for different languages to ensure proper translations across the application.
-
-## Customized Startup Screen & Cloud Integration
-
-### Splash Screen
-
-SyncWell features a customized splash screen with branded animation:
-
-```kotlin
-// Splash screen implementation in MainActivity.kt
-override fun onCreate(savedInstanceState: Bundle?) {
-    // Install splash screen before calling super.onCreate()
-    val splashScreen = installSplashScreen()
-
-    // Keep the splash screen visible for a little longer
-    splashScreen.setKeepOnScreenCondition { true }
-
-    super.onCreate(savedInstanceState)
-
-    // Remove splash screen after a delay
-    Handler(Looper.getMainLooper()).postDelayed({
-        splashScreen.setKeepOnScreenCondition { false }
-    }, 1500) // 1.5 seconds delay
-}
-```
-
-### Firebase Cloud Integration
-
-The app uses Firebase for authentication and cloud storage:
-
-```kotlin
-// Firebase configuration in FirebaseModule.kt
-@Module
-@InstallIn(SingletonComponent::class)
-object FirebaseModule {
-
-    @Provides @Singleton
-    fun provideFirebaseAuth(): FirebaseAuth =
-        FirebaseAuth.getInstance()
-
-    @Provides @Singleton
-    fun provideFirestore(): FirebaseFirestore {
-        val firestore = FirebaseFirestore.getInstance()
-
-        // Enable local caching with 100MB cache size
-        val localCacheSettings = PersistentCacheSettings
-            .newBuilder()
-            .setSizeBytes(100L * 1024 * 1024)
-            .build()
-
-        val settings = FirebaseFirestoreSettings
-            .Builder()
-            .setLocalCacheSettings(localCacheSettings)
-            .build()
-
-        firestore.firestoreSettings = settings
-        return firestore
-    }
-}
-```
-
-### Room Database for Local Caching
-
-SyncWell uses Room database for efficient local data storage:
-
-```kotlin
-// Database module providing Room database
-@Provides
-@Singleton
-fun provideDatabase(@ApplicationContext context: Context): SyncWellDatabase {
-    return Room.databaseBuilder(context, SyncWellDatabase::class.java, DB_NAME)
-        .addMigrations(SyncWellDatabase.MIGRATION_1_2)
-        .fallbackToDestructiveMigration()
-        .build()
-}
-```
-
-Data repositories in the app follow a pattern of storing data locally first, then syncing with Firebase:
-
-```kotlin
-// Example from TaskRepository showing local-first storage pattern
-suspend fun upsertTask(task: Task) {
-    val uid = userId ?: return
-
-    val updatedTask = task.copy(lastModified = System.currentTimeMillis(), userId = uid)
-    taskDao.insertTask(updatedTask)  // write to local DB first
-    try {
-        firestore.collection("tasks")
-            .document(updatedTask.id)
-            .set(updatedTask)
-            .await()
-    } catch (e: Exception) {
-        // Handle network errors
-    }
-}
-```
-
-## Accessibility Features
-
-SyncWell is built with accessibility in mind, especially for TalkBack screen reader support:
-
-```kotlin
-// Example of semantic properties for accessibility
-Surface(
-    modifier = Modifier
-        .size(100.dp)
-        .clip(CircleShape)
-        .semantics { contentDescription = accessibilityProfilePicture },
-    color = MaterialTheme.colorScheme.primary
-) {
-    Icon(
-        imageVector = Icons.Default.Person,
-        contentDescription = null,
-        tint = MaterialTheme.colorScheme.onPrimary,
-        modifier = Modifier
-            .padding(20.dp)
-            .size(60.dp)
-    )
-}
-```
-
-The app includes:
-
-- Content descriptions for all interactive elements
-- Properly labeled buttons and controls
-- Support for larger text sizes
-- High contrast color scheme
-- Clear navigation paths
-- TalkBack compatibility throughout the app
-
-## Technology Stack
-
-- **UI**: Jetpack Compose with Material3 design
-- **Architecture**: MVVM with Repository pattern
-- **Local Storage**: Room Database
-- **Cloud Storage**: Firebase Firestore
-- **Authentication**: Firebase Auth with Google Sign-In
-- **Background Processing**: WorkManager
-- **Dependency Injection**: Hilt
-- **Date/Time**: ThreeTenABP
-- **Network**: Retrofit with Gson
-- **Analytics**: Firebase Analytics
-
-## Getting Started
-
-1. Clone the repository
-2. Set up a Firebase project and add the `google-services.json` file
-3. Build and run the application
-
-## Contributing
-
-Contributions to SyncWell are welcome! Please feel free to submit pull requests, create issues, or suggest new features.
