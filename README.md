@@ -1,6 +1,10 @@
 <h1 align="center">🧘‍♀️ SyncWell – Health & Wellness Tracking App</h1>
 
 <p align="center">
+  <img src="app/src/main/res/drawable/app_icon.jpg" width="600" alt="SyncWell Banner" />
+</p>
+
+<p align="center">
   <img src="https://img.shields.io/github/stars/your-username/SyncWell?style=social" />
   <img src="https://img.shields.io/github/forks/your-username/SyncWell?style=social" />
   <img src="https://img.shields.io/github/license/your-username/SyncWell" />
@@ -8,10 +12,6 @@
   <img src="https://img.shields.io/badge/Jetpack%20Compose-Material3-blueviolet" />
   <img src="https://img.shields.io/badge/Firebase-CloudSync-yellow" />
   <img src="https://img.shields.io/badge/Room-Local%20DB-green" />
-</p>
-
-<p align="center">
-  <img src="app/src/main/res/drawable/app_icon.jpg" width="600" alt="SyncWell Banner" />
 </p>
 
 ---
