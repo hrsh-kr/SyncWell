@@ -1,32 +1,40 @@
-= SyncWell – Health & Wellness Tracking App
-:toc: left
-:icons: font
-:source-highlighter: rouge
-:sectnums:
-:sectnumlevels: 3
+<h1 align="center">🧘‍♀️ SyncWell – Health & Wellness Tracking App</h1>
 
-image::https://img.shields.io/github/license/your-repo/syncwell.svg[License]
-image::https://img.shields.io/github/languages/top/your-repo/syncwell.svg[Top Language]
-image::https://img.shields.io/github/v/release/your-repo/syncwell.svg[Latest Release]
-image::https://img.shields.io/github/issues/your-repo/syncwell.svg[Open Issues]
-image::https://img.shields.io/badge/Jetpack%20Compose-%E2%9C%85-blue.svg[Jetpack Compose]
-image::https://img.shields.io/badge/Kotlin-%E2%9C%85-blue.svg[Kotlin]
+<p align="center">
+  <img src="https://img.shields.io/github/stars/your-username/SyncWell?style=social" />
+  <img src="https://img.shields.io/github/forks/your-username/SyncWell?style=social" />
+  <img src="https://img.shields.io/github/license/your-username/SyncWell" />
+  <img src="https://img.shields.io/badge/Kotlin-%E2%9C%85-blue" />
+  <img src="https://img.shields.io/badge/Jetpack%20Compose-Material3-blueviolet" />
+  <img src="https://img.shields.io/badge/Firebase-CloudSync-yellow" />
+  <img src="https://img.shields.io/badge/Room-Local%20DB-green" />
+</p>
 
-SyncWell is a comprehensive **health and wellness tracking application** designed to help users maintain a healthier lifestyle. It provides tools to monitor medications, wellness metrics, personal tasks, and more — all from a single, seamless platform.
+<p align="center">
+  <img src="https://raw.githubusercontent.com/your-username/SyncWell/main/assets/syncwell_banner.png" width="600" alt="SyncWell Banner" />
+</p>
 
-== 🌟 Features
+---
 
-=== ✅ Health Task Management
+## 📑 Table of Contents
 
-Manage health-related tasks with features like:
+- [✨ Features](#-features)
+- [📱 UI Preview](#-ui-preview)
+- [📦 Tech Stack](#-tech-stack)
+- [🚀 Getting Started](#-getting-started)
+- [🤝 Contributing](#-contributing)
+- [🛡️ License](#-license)
 
-* Task creation with due dates
-* Priority levels (importance)
-* Smart customizable reminders
-* Cloud sync with local offline support
+---
 
-[source,kotlin]
-----
+## ✨ Features
+
+### ✅ Health Task Management
+- 📅 Task creation with deadlines and importance levels  
+- 🔔 Smart reminders with cloud/local sync  
+- 🗃️ Room persistence + Firebase sync
+
+```kotlin
 @Entity(tableName = "tasks")
 data class Task(
     @PrimaryKey @DocumentId val id: String = UUID.randomUUID().toString(),
@@ -38,209 +46,3 @@ data class Task(
     val importance: Int = 0,
     val lastModified: Long = System.currentTimeMillis()
 )
-----
-
-=== 💊 Medication Tracking
-
-Keep up with your prescriptions:
-
-* Create medication schedules
-* Receive timely reminders
-* Track dosage intake with ease
-
-=== 📊 Wellness Metrics Monitoring
-
-Track your daily health status effortlessly:
-
-[source,kotlin]
-----
-@Entity(tableName = "wellness_entries")
-@TypeConverters(DateConverters::class)
-data class WellnessEntry(
-    @PrimaryKey @DocumentId val id: String = UUID.randomUUID().toString(),
-    val userId: String = "",
-    val waterIntakeOz: Int = 0,
-    val waterGoalOz: Int = 64,
-    val sleepHours: Float = 0f,
-    val sleepGoalHours: Float = 8f,
-    val bedTimeMillis: Long = 0,
-    val wakeupTimeMillis: Long = 0,
-    val stepCount: Int = 0,
-    val stepGoal: Int = 10000,
-    val moodRating: Int = 0,
-    val energyLevel: Int = 0,
-    val notes: String = ""
-)
-----
-
-=== 📅 Dashboard Display
-
-Visual overview of your daily progress via elegant UI components:
-
-[source,kotlin]
-----
-CircularProgressMetric(
-    value = sleepProgress,
-    maxValue = 1f,
-    title = stringResource(R.string.dashboard_sleep_title),
-    mainText = stringResource(R.string.dashboard_sleep_hours, todayEntry?.sleepHours ?: 0),
-    subtitle = stringResource(R.string.dashboard_sleep_goal, todayEntry?.sleepGoalHours ?: 8),
-    progressColor = Secondary
-)
-----
-
-== 🌍 Localization Support
-
-Multilingual support with real-time language switching:
-
-* Built-in support: `English`, `Spanish`
-* Future support: `French`, more
-* All strings managed through resource files
-
-[source,kotlin]
-----
-private fun applySavedLanguage() {
-    val prefs = getSharedPreferences("app_settings", Context.MODE_PRIVATE)
-    val savedLanguage = prefs.getString(PREF_LANGUAGE, DEFAULT_LANGUAGE) ?: DEFAULT_LANGUAGE
-
-    val locale = Locale(savedLanguage)
-    Locale.setDefault(locale)
-
-    val localeList = androidx.core.os.LocaleListCompat.forLanguageTags(savedLanguage)
-    AppCompatDelegate.setApplicationLocales(localeList)
-
-    val config = resources.configuration
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-        config.setLocales(LocaleList(locale))
-    } else {
-        config.locale = locale
-    }
-
-    resources.updateConfiguration(config, resources.displayMetrics)
-}
-----
-
-== 🚀 Startup & Cloud Integration
-
-=== 🖼️ Splash Screen
-
-Branded, animated splash screen on launch:
-
-[source,kotlin]
-----
-val splashScreen = installSplashScreen()
-splashScreen.setKeepOnScreenCondition { true }
-Handler(Looper.getMainLooper()).postDelayed({
-    splashScreen.setKeepOnScreenCondition { false }
-}, 1500)
-----
-
-=== ☁ Firebase Integration
-
-* Firebase Auth for secure login (including Google Sign-In)
-* Firestore for real-time cloud data storage
-* Persistent caching support (100MB)
-
-[source,kotlin]
-----
-val settings = FirebaseFirestoreSettings.Builder()
-    .setLocalCacheSettings(
-        PersistentCacheSettings.newBuilder()
-            .setSizeBytes(100L * 1024 * 1024)
-            .build()
-    ).build()
-
-firestore.firestoreSettings = settings
-----
-
-=== 🗃️ Local Caching with Room
-
-Efficient offline-first architecture using Room DB:
-
-[source,kotlin]
-----
-fun provideDatabase(@ApplicationContext context: Context): SyncWellDatabase {
-    return Room.databaseBuilder(context, SyncWellDatabase::class.java, DB_NAME)
-        .addMigrations(SyncWellDatabase.MIGRATION_1_2)
-        .fallbackToDestructiveMigration()
-        .build()
-}
-----
-
-=== 🔁 Data Sync Pattern
-
-[source,kotlin]
-----
-suspend fun upsertTask(task: Task) {
-    val updatedTask = task.copy(
-        lastModified = System.currentTimeMillis(), userId = userId ?: return
-    )
-    taskDao.insertTask(updatedTask)
-    firestore.collection("tasks").document(updatedTask.id).set(updatedTask).await()
-}
-----
-
-== ♿ Accessibility Support
-
-SyncWell is built with *accessibility-first* principles:
-
-* Full support for TalkBack and screen readers
-* High-contrast UI
-* Scalable font sizes
-* Semantic labels for all UI elements
-
-[source,kotlin]
-----
-Surface(
-    modifier = Modifier
-        .size(100.dp)
-        .clip(CircleShape)
-        .semantics { contentDescription = accessibilityProfilePicture }
-) {
-    Icon(imageVector = Icons.Default.Person, contentDescription = null)
-}
-----
-
-== 🧱 Technology Stack
-
-[cols="1,3", options="header"]
-|===
-|Technology |Description
-
-|UI
-|Jetpack Compose with Material3
-
-|Architecture
-|MVVM with Repository Pattern
-
-|Local DB
-|Room + SQLite
-
-|Cloud Backend
-|Firebase Firestore (offline enabled)
-
-|Authentication
-|Firebase Auth with Google Sign-In
-
-|Dependency Injection
-|Hilt
-
-|Date/Time Handling
-|ThreeTenABP
-
-|Networking
-|Retrofit with Gson
-
-|Background Work
-|WorkManager
-
-|Analytics
-|Firebase Analytics
-|===
-
-== 🛠️ Getting Started
-
-1. Clone the repository:
-+
-```bash
-git clone https://github.com/your-repo/syncwell.git
