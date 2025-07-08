@@ -289,6 +289,6 @@ Having issues? We're here to help!
 [![GitHub](https://img.shields.io/badge/GitHub-Follow-black?style=social&logo=github)](https://github.com/yourusername)
 [![Twitter](https://img.shields.io/badge/Twitter-Follow-blue?style=social&logo=twitter)](https://twitter.com/syncwell_app)
 
-⭐ **Star this repo if you find it helpful!** ⭐
+⭐⭐ **Star this repo if you find it helpful!** ⭐⭐
 
 </div>
