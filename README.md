@@ -54,11 +54,7 @@
 ## 📱 Screenshots
 
 <div align="center">
-
-| Dashboard | Tasks | Wellness Tracking | Profile |
-|:---------:|:-----:|:-----------------:|:-------:|
-| ![Dashboard](https://via.placeholder.com/200x400/4285F4/FFFFFF?text=Dashboard) | ![Tasks](https://via.placeholder.com/200x400/34A853/FFFFFF?text=Tasks) | ![Wellness](https://via.placeholder.com/200x400/EA4335/FFFFFF?text=Wellness) | ![Profile](https://via.placeholder.com/200x400/FBBC04/FFFFFF?text=Profile) |
-
+<img src="assets/app_screenshots.png" width="600"/>
 </div>
 
 ---
