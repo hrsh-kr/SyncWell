@@ -54,7 +54,7 @@
 ## 📱 Screenshots
 
 <div align="center">
-<img src="assets/app_screenshots.png" width="600"/>
+<img src="assets/app_screenshots.png" width="800"/>
 </div>
 
 ---
