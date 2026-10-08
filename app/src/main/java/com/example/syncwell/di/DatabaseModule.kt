@@ -40,10 +40,6 @@ object DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(@ApplicationContext context: Context): SyncWellDatabase {
-        // If you need to delete the database (for testing or migration issues)
-        // Uncomment this line to delete the database on next app start - THEN COMMENT IT AGAIN
-        deleteDatabase(context)
-        
         // Build the Room database
         return Room.databaseBuilder(context, SyncWellDatabase::class.java, DB_NAME)
             .addMigrations(SyncWellDatabase.MIGRATION_1_2) // Use defined migration strategy
